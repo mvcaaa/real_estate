@@ -17,10 +17,15 @@ ActiveRecord::Schema.define(:version => 20130406074229) do
     t.string   "name"
     t.text     "description"
     t.float    "price"
+    t.string   "location"
     t.boolean  "available"
     t.integer  "type"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "items", ["name"], :name => "index_items_on_name"
+  add_index "items", ["price"], :name => "index_items_on_price"
+  add_index "items", ["type"], :name => "index_items_on_type"
 
 end

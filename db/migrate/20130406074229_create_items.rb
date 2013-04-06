@@ -4,9 +4,15 @@ class CreateItems < ActiveRecord::Migration
       t.string      :name
       t.text        :description
       t.float       :price
+      t.string      :location
       t.boolean     :available
       t.integer     :type
       t.timestamps
     end
+
+    add_index :items, :name
+    add_index :items, :price
+    add_index :items, :type
+\
   end
 end
