@@ -1,2 +1,1 @@
-real_estate
-===========
+This project is real estate agency (Web)app skeleton
