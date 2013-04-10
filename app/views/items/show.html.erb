@@ -5,24 +5,26 @@
   <li>Описание: <%= @item.description %></li>
   <li>Цена: <%= @item.price %></li>
 </ul>
-<br/>
-<% if @item.address %>
+<% if @item.address && @item.latitude && @item.longitude %>
     <ul>
       <li>Адрес: <%= @item.address %> </li>
       <li>Координаты: <%= @item.latitude %> <%= @item.longitude %>  </li>
     </ul>
-
-
     <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@item.latitude}%2C#{@item.longitude}" %>
-
     <% if (item = @item.nearbys(25)).count >= 1 %>
         <h3>Так же недалеко расположены:</h3>
         <ul>
-          <% item.each do |i|  %>
+          <% item.each do |i| %>
               <li><%= link_to i.name, i %> (<%= i.distance_to(@item).round(2) if i.distance %> km)</li>
           <% end %>
         </ul>
     <% end %>
+<% end %>
+<% if @item.address && !@item.latitude && !@item.longitude %>
+    <ul>
+      <li>Адрес: <%= @item.address %> </li>
+      <li>Координаты: <b>Address cannot be resolved</b>  </li>
+    </ul>
 <% end %>
 
 

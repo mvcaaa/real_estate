@@ -1,11 +1,13 @@
 class ItemsController < ApplicationController
 
+  before_filter :find_item, only:[:show, :edit, :update, :destroy]
+
   def index
     @items = Item.all
   end
 
   def show
-    unless @item = Item.where(id: params[:id]).first
+    unless @item
       render text: 'Page not found', status: 404
     end
   end
@@ -24,11 +26,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
-    @item = Item.update(params[:id], params[:item])
+    @item.update_attributes(params[:item])
     if @item.errors.empty?
       redirect_to item_path(@item)
     else
@@ -37,14 +38,19 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id]).destroy
+    @item.destroy
     redirect_to action: 'index'
   end
+
+  private
 
   def address_changed?
     attrs = %w(address latitude longitude)
     attrs.any?{|a| send "#{a}_changed?"}
   end
 
+  def find_item
+    @item = Item.find(params[:id])
+  end
 
 end
