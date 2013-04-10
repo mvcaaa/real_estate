@@ -3,6 +3,8 @@ class Item < ActiveRecord::Base
   geocoded_by :address, :units => :km
   reverse_geocoded_by :latitude, :longitude
 
+  default_scope order('id ASC')
+
   validates :price, numericality: { greater_than: 0, allow_nil: true }
   validates :address, :name, :description, presence: true
 
