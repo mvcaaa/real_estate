@@ -41,4 +41,10 @@ class ItemsController < ApplicationController
     redirect_to action: 'index'
   end
 
+  def address_changed?
+    attrs = %w(address latitude longitude)
+    attrs.any?{|a| send "#{a}_changed?"}
+  end
+
+
 end
