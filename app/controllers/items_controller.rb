@@ -1,9 +1,14 @@
 class ItemsController < ApplicationController
 
-  before_filter :find_item, only:[:show, :edit, :update, :destroy]
+  before_filter :find_item, only:[:show, :edit, :update, :upvote, :destroy]
 
   def index
     @items = Item.all
+  end
+
+  def expensive
+    @items = Item.where('price > 10000')
+    render 'index'
   end
 
   def show
@@ -39,6 +44,11 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
+    redirect_to action: 'index'
+  end
+
+  def upvote
+    @item.increment!(:votes_count)
     redirect_to action: 'index'
   end
 

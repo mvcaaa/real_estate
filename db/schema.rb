@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410140319) do
+ActiveRecord::Schema.define(:version => 20130410195004) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -20,11 +20,12 @@ ActiveRecord::Schema.define(:version => 20130410140319) do
     t.string   "location"
     t.boolean  "available"
     t.integer  "type"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.string   "address"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "votes_count", :default => 0
   end
 
   add_index "items", ["name"], :name => "index_items_on_name"

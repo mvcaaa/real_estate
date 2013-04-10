@@ -10,6 +10,7 @@
         <th>Price</th>
         <th>Edit</th>
         <th>Del</th>
+        <th>Rate</th>
       </tr>
     <% @items.each do |i| %>
         <tr>
@@ -18,6 +19,7 @@
           <td><%= i.price %></td>
           <td><%= link_to 'e', item_path(i)+'/edit' %></td>
           <td><%= link_to 'x', i, method: :delete, data: { confirm: 'Are you sure ?'} %></td>
+          <td><%= link_to i.votes_count, upvote_item_path(i) %></td>
         </tr>
     <% end %>
 <% end %>
