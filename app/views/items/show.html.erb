@@ -1,7 +1,30 @@
-<h1><%= @item.name %></h1>
-<ul>
-  <li><%= @item.price %></li>
-  <li><%= @item.description %></li>
-</ul>
+<h1>Объект: <%= @item.name %></h1>
 
-<%= link_to 'Back to index', '/items' %>
+
+<ul>
+  <li>Описание: <%= @item.description %></li>
+  <li>Цена: <%= @item.price %></li>
+</ul>
+<br/>
+<% if @item.address %>
+    <ul>
+      <li>Адрес: <%= @item.address %> </li>
+      <li>Координаты: <%= @item.latitude %> <%= @item.longitude %>  </li>
+    </ul>
+
+
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@item.latitude}%2C#{@item.longitude}" %>
+
+    <% if (item = @item.nearbys(25)).count >= 1 %>
+        <h3>Так же недалеко расположены:</h3>
+        <ul>
+          <% item.each do |i|  %>
+              <li><%= link_to i.name, i %> (<%= i.distance.round(2) %> km)</li>
+          <% end %>
+        </ul>
+    <% end %>
+<% end %>
+
+
+
+<p><%= link_to 'Back to index', action: :index %> </p>
