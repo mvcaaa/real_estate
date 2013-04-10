@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130406074229) do
+ActiveRecord::Schema.define(:version => 20130410140319) do
 
   create_table "items", :force => true do |t|
     t.string   "name"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(:version => 20130406074229) do
     t.integer  "type"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "items", ["name"], :name => "index_items_on_name"
