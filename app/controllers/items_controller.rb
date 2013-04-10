@@ -12,7 +12,18 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.create(params[:item])
-    render text: "Item #{@item.name}, #{@item.price} created"
+    if @item.errors.empty?
+      redirect_to item_path(@item)
+    else
+      render 'new'
+    end
+  end
+
+  def new
+    @item = Item.new
+  end
+
+  def edit
   end
 
 end
