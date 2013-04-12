@@ -12,4 +12,7 @@ class Item < ActiveRecord::Base
   # Идея хранить количество соседних домов в отдельном поле
   #after_validation :nearbys_update, :if => :address_changed?
 
+  has_and_belongs_to_many :carts
+
+
 end
