@@ -3,7 +3,7 @@
 This project is real estate agency (Web)app 
 
 This is my first Ruby/Rails web project
-
+Just keep its updated
 
 
 
