@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-
-  attr_accessor :user, :user_id
+  # TODO Migration
+  # attr_accessor :user, :user_id
 
   belongs_to :user
 

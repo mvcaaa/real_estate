@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
-  attr_accessible :name, :price, :description, :address
+  # TODO - migration !!!!
+  # attr_accessible :name, :price, :description, :address
   geocoded_by :address, :units => :km
   reverse_geocoded_by :latitude, :longitude
 
